@@ -1,0 +1,9 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: leon-provider
+  cloud:
+    consul:
+      host: localhost
+      port: 8500

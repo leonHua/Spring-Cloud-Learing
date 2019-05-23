@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: leon-consumer
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      config:
+        enabled: true
+        format: yaml
+        prefix: config
+        default-context: leon-consumer
+        data-key: data
+
