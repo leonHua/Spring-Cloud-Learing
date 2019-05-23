@@ -1,0 +1,11 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: leon-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        server-addr: localhost:8848
