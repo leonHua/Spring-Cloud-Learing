@@ -1,0 +1,15 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: leon-consumer
+  cloud:
+    zookeeper:
+      connect-string: localhost:2181
+      discovery:
+        enabled: true
+        register: true
+      config:
+        root: /config #根目录
+
+
