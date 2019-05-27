@@ -1,0 +1,25 @@
+server:
+  port: 8085
+eureka:
+  client:
+    service-url:
+       defaultZone: http://localhost:8080/eureka/
+spring:
+  application:
+    name: leon-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: path_route
+        uri: lb://leon-consumer
+        predicates:
+        - Path=/user/{segment}
+        filters:
+        - AddRequestHeader=X-Request-Foo, Bar
+      discovery:
+        locator:
+          enabled: true #设置可以通过服务名获取服务
+          lower-case-service-id: true #设置获取服务可以通过小写形式
+
+
+

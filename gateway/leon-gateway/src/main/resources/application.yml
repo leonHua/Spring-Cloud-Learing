@@ -1,0 +1,46 @@
+server:
+  port: 8085
+eureka:
+  client:
+    service-url:
+       defaultZone: http://localhost:8080/eureka/
+spring:
+  application:
+    name: leon-gateway
+  cloud:
+    gateway:
+      routes:
+#      - id: cookie_route
+#        uri: http://localhost:8081/login?username=leon&password=888
+#        predicates:
+#        - Cookie=name,leon
+
+#      - id: header_route
+#        uri: http://localhost:8081/login?username=leon&password=888
+#        predicates:
+#        - Header=X-Request-Id, \d+
+
+#      - id: host_route
+#        uri: http://localhost:8081/login?username=leon&password=888
+#        predicates:
+#        - Host=**.leon.cn
+
+#      - id: method_route
+#        uri: http://localhost:8081/login?username=leon&password=888
+#        predicates:
+#         - Method=GET
+
+#      - id: path_route
+#        uri: http://localhost:8081/login?username=leon&password=888
+#        predicates:
+#        - Path=/leon/{segment}
+
+      - id: query_route
+        uri: http://localhost:8081/info
+        predicates:
+        - Query=name, leon.
+
+#      - id: remoteaddr_route
+#        uri: http://localhost:8081/login?username=leon&password=888
+#        predicates:
+#        - RemoteAddr=172.17.153.1/32
