@@ -1,0 +1,13 @@
+server:
+  port: 6060
+spring:
+  application:
+    name: leon-springboot-prometheus
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    tags:
+       application: ${spring.application.name}
