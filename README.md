@@ -13,3 +13,4 @@ nacos：注册中心扩展（二）nacos作为服务注册和发现、配置中�
 
 zookeeper：注册中心扩展（三）zookeeper作为服务注册和发现、配置中心，整合Spring Cloud
 
+seata: 分布式事务解决方案，使用Seata中间件控制分布式事务。包含一个订单服务和库存服务示例，演示了如何在Spring Cloud项目中使用Seata进行分布式事务管理。

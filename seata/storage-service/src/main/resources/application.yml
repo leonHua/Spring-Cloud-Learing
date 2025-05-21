@@ -1,0 +1,56 @@
+server:
+  port: 8082 # Different port than order-service
+
+spring:
+  application:
+    name: storage-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 # Replace with your Nacos server address if using Nacos
+  main:
+    allow-bean-definition-overriding: true # Necessary for Seata
+
+# DataSource configuration (using H2 in-memory database for simplicity)
+spring.datasource:
+  url: jdbc:h2:mem:storage_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+  driverClassName: org.h2.Driver
+  username: sa
+  password: 
+
+# Mybatis configuration (if using Mybatis)
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: io.seata.sample.storageservice.entity
+
+# Seata configuration
+seata:
+  tx-service-group: my_test_tx_group # Needs to match the Seata server configuration
+  service:
+    vgroup-mapping:
+      my_test_tx_group: default
+  # Configuration for Seata client, e.g., pointing to the Seata server
+  # If using file-based configuration, these properties might be in file.conf/registry.conf
+  # If using Nacos, these would be fetched from Nacos
+
+# Logging configuration to show Seata XID
+logging:
+  level:
+    io.seata: INFO
+    io.seata.sample.storageservice: DEBUG # Set your package to DEBUG to see more logs
+
+# Enable H2 console
+spring.h2.console:
+  enabled: true
+  path: /h2-console
+  settings:
+    web-allow-others: true # Allows remote access to H2 console (for development)
+    trace: false
+# Ensure tables are created on startup
+spring.jpa.hibernate.ddl-auto: update # or create, create-drop
+spring.jpa.defer-datasource-initialization: true
+
+# SQL initialization (optional, if you have a schema.sql or data.sql)
+# spring.sql.init.mode: always
+# spring.sql.init.schema-locations: classpath:schema.sql
+# spring.sql.init.data-locations: classpath:data.sql
